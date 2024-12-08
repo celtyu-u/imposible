@@ -1,0 +1,588 @@
+@import "primereact/resources/themes/lara-light-indigo/theme.css"; /* Tema (puedes elegir otro) */
+@import "primereact/resources/primereact.min.css"; /* Estilos principales */
+@import "primeicons/primeicons.css"; /* Íconos */
+@import "primeflex/primeflex.css";
+
+:root {
+  --primary-color: #025391;
+  --primary-color-rgb: 2, 83, 145;
+  --primary-hover: #023760;
+  --secondary-color: #0367a6;
+  --secondary-color-rgb: 3, 103, 166;
+  --secondary-hover: #1d7eba;
+  --terceary-color: #f23d4c;
+  --success-color: #3eb7d6;
+  --success-hover: #2ba1be;
+  --info-color: #0bdef5;
+  --info-hover: #19d3e8;
+  --test-color: #a8f9fe;
+  --test-hover: #92f2f7;
+  --accent-color: #a61f2b;
+  --background-color: #ffffff;
+  --text-color: #000000;
+  --text-color2: #ffffff;
+}
+
+/* CSS del HTML */
+body {
+  font-family: "Roboto", sans-serif; /* Tipografía */
+  margin: 0;
+  padding: 0;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+h1 {
+  text-align: left;
+  color: var(--primary-color);
+  font-size: 36px;
+  text-shadow: 2px 1px 3px rgba(0, 0, 0, 0.3);
+  margin-bottom: 20px;
+  font-family: "Arial", sans-serif;
+  font-weight: 700;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  padding: 0px 3px 15px 0px;
+  position: relative;
+  display: inline-block;
+}
+
+h1:before {
+  background-color: var(--accent-color);
+  content: "";
+  display: block;
+  height: 3px;
+  width: 75px;
+  margin-bottom: 5px;
+}
+
+h1:after {
+  background-color: var(--accent-color);
+  content: "";
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  width: 75px;
+  margin-bottom: 0.25em;
+}
+
+/* CSS de Prime */
+.p-button-secondary {
+  background-color: var(--background-color);
+  color: var(--terceary-color);
+  border-color: var(--terceary-color);
+}
+
+.p-button-secondary:hover {
+  font-size: 1.1rem;
+}
+
+.p-button.p-button-text {
+  color: var(--primary-color);
+}
+
+.p-button.p-button-text:hover {
+  color: var(--primary-color);
+  box-shadow: rgba(3, 102, 214, 0) 0px 0px 0px 3px;
+}
+
+.p-dialog .p-dialog-header {
+  background-color: var(--secondary-color);
+  color: var(--text-color2);
+}
+
+.p-dialog-header {
+  height: 40px;
+}
+
+.p-dialog .p-dialog-header-icons {
+  display: flex;
+  align-items: center;
+  align-self: auto;
+  flex-shrink: 0;
+}
+
+.p-dialog .p-dialog-header .p-dialog-header-icon:last-child {
+  color: var(--text-color2);
+}
+
+.p-dialog .p-dialog-header .p-dialog-header-icon:hover {
+  color: gray;
+}
+
+.p-datatable .p-datatable-thead > tr > th {
+  color: var(--text-color2);
+  background-color: var(--secondary-color);
+}
+
+.p-datatable > .p-datatable-wrapper,
+.p-datatable .p-paginator-bottom {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.p-datatable .p-datatable-tbody > tr > td {
+  padding: 0.2rem 0.2rem;
+}
+
+.pi-trash {
+  color: var(--terceary-color);
+}
+
+.pi {
+  transition: font-size 0.3s ease;
+}
+
+.pi:hover {
+  font-size: 1.2rem;
+}
+
+.second-title {
+  display: none;
+}
+
+.p-datatable .p-sortable-column .p-sortable-column-icon {
+  color: var(--text-color2);
+}
+
+.p-datatable .p-sortable-column:hover {
+  background-color: var(--secondary-hover);
+}
+
+.p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+  color: var(--primary-color);
+  background-color: rgba(26, 90, 155, 0.3);
+  font-weight: 700;
+}
+
+.p-dialog .p-dialog-content {
+  padding: 1rem 0.5rem 0.5rem 0.5rem;
+}
+
+.p-dialog .p-dialog-footer .p-confirm-dialog-accept {
+  background-color: var(--primary-color);
+}
+
+.p-dialog .p-dialog-footer .p-confirm-dialog-accept:hover {
+  background-color: var(--primary-hover);
+  font-size: 1.1rem;
+}
+
+.p-dialog .p-dialog-footer .p-confirm-dialog-reject {
+  background-color: var(--background-color);
+  color: var(--terceary-color);
+  border: 1px solid var(--terceary-color);
+}
+
+.p-dialog .p-dialog-footer .p-confirm-dialog-reject:hover {
+  font-size: 1.1rem;
+}
+
+.p-accordion .p-accordion-header .p-accordion-header-link {
+  background-color: var(--background-color);
+  color: var(--primary-color);
+  font-size: 1.2rem;
+  height: 10px;
+  text-align: left;
+  border-color: var(--background-color);
+}
+
+.p-accordion
+  .p-accordion-header:not(.p-disabled).p-highlight
+  .p-accordion-header-link {
+  background-color: var(--background-color);
+  color: var(--primary-color);
+  font-size: 1.2rem;
+  height: 10px;
+  text-align: left;
+  border-color: #e5e7eb;
+}
+
+.p-accordion
+  .p-accordion-header:not(.p-highlight):not(.p-disabled):hover
+  .p-accordion-header-link {
+  background-color: var(--background-color);
+  background: var(--background-color);
+  color: var(--primary-color);
+  font-size: 1.2rem;
+  height: 10px;
+  text-align: left;
+  border-color: #e5e7eb;
+}
+
+/* CSS de Styles */
+.title-finder {
+  text-align: left;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.font-bold {
+  font-weight: 900;
+}
+
+.button-primary {
+  background-color: var(--primary-color);
+  color: var(--text-color2);
+  border-color: var(--primary-color);
+}
+
+.button-primary:hover {
+  background-color: var(--primary-hover);
+  border-color: var(--primary-hover);
+  font-size: 1.1rem;
+}
+
+.button-secondary {
+  background-color: var(--secondary-color);
+  color: var(--text-color2);
+  border-color: var(--secondary-color);
+}
+
+.button-secondary:hover {
+  background-color: var(--secondary-hover);
+  border-color: var(--secondary-hover);
+  font-size: 1.1rem;
+}
+
+.button-success {
+  background-color: var(--success-color);
+  color: var(--text-color2);
+  border-color: var(--success-color);
+}
+
+.button-success:hover {
+  background-color: var(--success-hover);
+  border-color: var(--success-hover);
+  font-size: 1.1rem;
+}
+
+.button-test {
+  background-color: var(--test-color);
+  color: var(--text-color2);
+  border-color: var(--test-color);
+}
+
+.button-test:hover {
+  background-color: var(--test-hover);
+  border-color: var(--test-hover);
+  font-size: 1.1rem;
+}
+
+.button-info {
+  background-color: var(--info-color);
+  color: var(--text-color2);
+  border-color: var(--info-color);
+}
+
+.button-info:hover {
+  background-color: var(--info-hover);
+  border-color: var(--info-hover);
+  font-size: 1.1rem;
+}
+
+.button-warning {
+  background-color: var(--accent-color);
+  color: var(--text-color2);
+  border-color: var(--accent-color);
+}
+
+.button-warning:hover {
+  background-color: var(--primary-hover);
+  border-color: var(--primary-hover);
+  font-size: 1.1rem;
+}
+
+.button-help {
+  background-color: var(--primary-color);
+  color: var(--text-color2);
+  border-color: var(--primary-color);
+}
+
+.button-help:hover {
+  background-color: var(--primary-hover);
+  border-color: var(--primary-hover);
+  font-size: 1.1rem;
+}
+
+@keyframes fadeInMove {
+  0% {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-opacityX {
+  opacity: 0;
+  animation: fadeInMove 1s ease-out forwards;
+}
+
+@keyframes fadeInMoveY {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-opacityY {
+  opacity: 0;
+  animation: fadeInMoveY 0.5s ease-out forwards;
+}
+
+.container-menu{
+  background-color: white;
+  position: relative;
+  z-index: 1;
+  box-shadow: rgba(3, 102, 214, 0) 0px 0px 0px 3px;
+}
+
+
+/* CSS de Resposive */
+@media screen and (max-width: 768px) {
+  .p-datatable {
+    font-size: 0.8rem;
+  }
+
+  .p-datatable-thead {
+    display: none;
+  }
+
+  .p-datatable-tbody > tr > td {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .p-datatable-tbody > tr > td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  /* .p-button {
+    font-size: 0.7rem;
+  } */
+
+  .p-button-rounded {
+    padding: 0.25rem 0.5rem;
+  }
+  .p-datatable-thead {
+    display: none;
+  }
+
+  .second-title {
+    display: inline-table;
+  }
+
+  .p-datatable .p-datatable-tbody > tr {
+    color: var(--text-color);
+    box-shadow: rgba(0, 0, 0, 1) 0px 1px 3px 0px,
+      rgba(27, 31, 35, 0.5) 0px 0px 0px 1px;
+  }
+
+  .container-menu{
+    background-color: white;
+    position: absolute;
+    z-index: 1;
+    box-shadow: rgba(3, 102, 214, 0) 0px 0px 0px 3px;
+  }
+
+  .nav-bar {
+    margin-left: 250px;
+    display: flex;
+  }
+  .main-children{
+    margin-left: 30px;
+  }
+
+  .logo-navbar{
+    display: none;
+  }
+}
+
+.nav-bar {
+  width: 100%;
+  height: 6em;
+  display: flex;
+  flex-direction: row;
+  background-color: var(--background-color);
+  margin-left: 0px;
+  justify-content: space-between;
+}
+
+.menu-bar {
+  width: 250px;
+  height: 90Vh;
+  transition: width 0.5s ease-out, opacity 0.5s ease-out;
+  opacity: 1;
+  /* background-color: rgba(103, 127, 199,.2); */
+}
+.menu-bar.closed-bar {
+  width: 15px;
+  opacity: 0;
+  /* background-color: rgba(103, 127, 199,.2); */
+}
+
+.main-logo {
+  width: 180px;
+  margin-top: 20px;
+  display: inline;
+}
+
+.main-logo-app {
+  text-align: left;
+  width: 180px;
+  margin-top: 20px;
+}
+
+.close-session {
+  text-align: left;
+  width: 70px;
+  margin-top: 20px;
+}
+
+.mmain-space {
+  display: flex;
+  padding: 20px;
+}
+
+.menu-bar-space {
+  display: flex;
+  flex-direction: row;
+}
+
+.main-space {
+  width: 100%;
+  background-color: var(--background-color);
+}
+
+.burguer {
+  font-size: 9px;
+}
+
+.container-burguer {
+  align-content: flex-end;
+}
+
+.burguer.p-button.p-button-icon-only {
+  background-color: var(--background-color);
+  color: var(--primary-color);
+  border-color: var(--background-color);
+}
+
+.burguer.p-button.p-button-icon-only:hover {
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  border-color: var(--primary-color);
+}
+
+.flex-inline {
+  display: inline-flex;
+}
+
+.avatar-main {
+  padding: 5px;
+}
+
+.user-main {
+  justify-content: flex-end;
+  padding: 10px;
+}
+
+.p-menu {
+  width: 100%;
+  padding: 5px;
+  text-align: left;
+  /* border-color: var(--background-color); */
+}
+
+.p-menu .p-menuitem > .p-menuitem-content .p-menuitem-link .p-menuitem-text {
+}
+
+.p-menu
+  .p-menuitem
+  > .p-menuitem-content
+  .p-menuitem-link
+  .p-menuitem-text:hover {
+}
+
+.p-menu .p-menuitem > .p-menuitem-content .p-menuitem-link:hover {
+  background-color: rgba(var(--secondary-color-rgb), 0.4);
+}
+
+.main-children {
+  width: 100%;
+}
+
+.logo-navbar {
+
+}
+
+.hr-red {
+  border: none;
+  border-top: 3px solid var(--accent-color);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  margin: 20px 0px 0px 0px;
+}
+
+.hr-blue {
+  border: none;
+  border-top: 3px solid var(--primary-color);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  margin: 10px 0px 0px 0px;
+}
+
+.right-segment {
+  display: flex;
+}
+
+.user-avatar {
+  margin-top: 15px;
+}
+
+.icono-menubar {
+  font-size: "2rem";
+  position: "absolute";
+  top: "10px";
+  right: "10px";
+  z-index: 2000;
+}
+
+
+.p-calendar-w-btn-right .p-datepicker-trigger{
+  background-color: var(--primary-color);
+}
+
+.detail-row{
+  margin: 10px;
+}
+
+.p-inputtext{
+  width: 100%;
+}
+
+.p-password{
+  width: 100%;
+}
+
+.p-icon-field{
+  width: 100%;
+}
