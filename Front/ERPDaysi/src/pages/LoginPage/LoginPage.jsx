@@ -3,6 +3,8 @@ import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';  
 import { Card } from 'primereact/card';
 import { classNames } from 'primereact/utils';
+import { useNavigate } from 'react-router-dom';
+
 import './LoginPage.css';
 
 const LoginPage = () => {
@@ -10,6 +12,7 @@ const LoginPage = () => {
     const [contraseña, setContraseña] = useState('');
     const [submitted, setSubmitted] = useState(false);
 
+    const navigate=useNavigate();
     const onSubmit = () => {
         setSubmitted(true);
         if (usuario && contraseña) {
@@ -17,6 +20,7 @@ const LoginPage = () => {
             console.log('Usuario:', usuario);
             console.log('Contraseña:', contraseña);
         }
+        navigate('/main');
     };
 
     const isFormFieldInvalid = (fieldName) => !!(submitted && ![usuario, contraseña][fieldName.toLowerCase().indexOf('usuario')]);
