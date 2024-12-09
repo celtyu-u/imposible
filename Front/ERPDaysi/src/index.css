@@ -620,6 +620,7 @@ h1:after {
 
 .icono-imagen{
   width: 100px;
+  transition: width 0.3s ease;
 }
 
 .icono-imagen:hover{
