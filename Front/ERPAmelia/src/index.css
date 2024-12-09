@@ -1,28 +1,27 @@
-@import "primereact/resources/themes/lara-light-indigo/theme.css"; /* Tema (puedes elegir otro) */
+@import "primereact/resources/themes/lara-dark-indigo/theme.css"; /* Tema (puedes elegir otro) */
 @import "primereact/resources/primereact.min.css"; /* Estilos principales */
 @import "primeicons/primeicons.css"; /* Íconos */
 @import "primeflex/primeflex.css";
 
 :root {
-  --primary-color: #025391;
-  --primary-color-rgb: 2, 83, 145;
-  --primary-hover: #023760;
-  --secondary-color: #0367a6;
-  --secondary-color-rgb: 3, 103, 166;
-  --secondary-hover: #1d7eba;
-  --terceary-color: #f23d4c;
-  --success-color: #3eb7d6;
-  --success-hover: #2ba1be;
-  --info-color: #0bdef5;
-  --info-hover: #19d3e8;
-  --test-color: #a8f9fe;
-  --test-hover: #92f2f7;
-  --accent-color: #a61f2b;
-  --background-color: #ffffff;
-  --text-color: #000000;
-  --text-color2: #ffffff;
+  --primary-color: #c2185b; /* Rosa */
+  --primary-color-rgb: 194, 24, 91;
+  --primary-hover: #a1154c; /* Rosa más oscuro */
+  --secondary-color: #7b1fa2; /* Morado */
+  --secondary-color-rgb: 123, 31, 162;
+  --secondary-hover: #5a1677; /* Morado más oscuro */
+  --terceary-color: #e91e63; /* Rosa vibrante */
+  --success-color: #ce93d8; /* Morado suave */
+  --success-hover: #ba68c8; /* Morado más saturado */
+  --info-color: #f06292; /* Rosa suave */
+  --info-hover: #ec407a; /* Rosa más intenso */
+  --test-color: #f8bbd0; /* Rosa pastel */
+  --test-hover: #f48fb1; /* Rosa pastel más oscuro */
+  --accent-color: #880e4f; /* Morado profundo */
+  --background-color: #222; /* Negro */
+  --text-color: #ffffff; /* Blanco */
+  --text-color2: #ffffff; /* Blanco */
 }
-
 /* CSS del HTML */
 body {
   font-family: "Roboto", sans-serif; /* Tipografía */
@@ -47,7 +46,7 @@ h1 {
   display: inline-block;
 }
 
-h1:before {
+/* h1:before {
   background-color: var(--accent-color);
   content: "";
   display: block;
@@ -66,7 +65,7 @@ h1:after {
   height: 3px;
   width: 75px;
   margin-bottom: 0.25em;
-}
+} */
 
 /* CSS de Prime */
 .p-button-secondary {
@@ -585,4 +584,58 @@ h1:after {
 
 .p-icon-field{
   width: 100%;
+}
+
+.logo-erp{
+  width: 150px;  
+  transition: width 0.3s ease;
+}
+
+.logo-erp:hover{
+  width: 180px;  
+}
+
+ .p-panelmenu .p-panelmenu-header .p-panelmenu-header-content .p-panelmenu-header-link{
+  background-color: var(--background-color);
+} 
+
+.icono-navbar{
+  width: 100px;
+}
+
+
+.d-flex {
+  display: flex;
+}
+
+.align-items-center {
+  align-items: center; /* Centra verticalmente los elementos */
+}
+
+.icon-user {
+  width: 50px; /* Tamaño del ícono */
+  height: 50px;
+  fill: var(--info-hover);
+}
+
+.text-container {
+  display: flex;
+  flex-direction: column; /* Alinea los textos verticalmente */
+}
+
+.ms-2 {
+  margin-left: 0.5rem; /* Espaciado entre el ícono y el texto */
+}
+
+
+.title-user{
+   font-size: 25px;
+   color: var(--text-color);
+   font-weight: 100;
+  }
+
+.rol-user{
+  font-weight: 900;
+  font-size: 15px;
+  color: var(--text-color);
 }
