@@ -36,20 +36,7 @@ VALUES
 ('7520000146200', 'Ron Flor de Caña 12 Años 750ml', 870.00, 35, 2),
 ('7521000146304', 'Whisky Macallan Double Cask 12 Años 750ml', 1950.00, 20, 3)
 
-
-
-
-
-CREATE TABLE [dbo].[Producto](
-	[IdProducto] [int] IDENTITY(1,1) NOT NULL,
-	[CodigoBarras] [nvarchar](13) NOT NULL,
-	[Descripcion] [nvarchar](200) NOT NULL,
-	[Precio] [numeric](18, 2) NOT NULL,
-	[InventarioInicial] [numeric](18, 0) NOT NULL,
-	[IdTipoProducto] [int] NOT NULL,
- CONSTRAINT [PK_Producto] PRIMARY KEY CLUSTERED 
  
- 
- 
-
+/*
 creame 10 datos dummy para la siguiente tabla, el precio debe ser en pesos mexicanos, los productos deben ser de vinos y licores, la definición es: CREATE TABLE [dbo].[Producto]( [IdProducto] [int] IDENTITY(1, 1) NOT NULL, [CodigoBarras] [nvarchar](13) NOT NULL, [Descripcion] [nvarchar](200) NOT NULL, [Precio] [numeric](18, 2) NOT NULL, [InventarioInicial] [numeric](18, 0) NOT NULL, [IdTipoProducto] [int] NOT NULL, CONSTRAINT [PK_Producto] PRIMARY KEY CLUSTERED ) debes considerar el siguiente catálogo para los idTipoProducto : IdTipoProducto 1- Tequila 2- Rones 3- Whiskies 4- Vinos 5- Cerveza 6- Vodkas 7- Mezcales
+*/
