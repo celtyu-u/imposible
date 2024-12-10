@@ -639,3 +639,33 @@ h1:after {
   font-size: 15px;
   color: var(--text-color);
 }
+
+.title-data{
+  font-size: 24px;
+  color: var(--text-color);
+}
+
+.data-data{
+  font-size: 40px;
+  color: var(--primary-hover);
+  font-weight: 900;
+}
+
+.note-data{
+  font-size: 10px;
+  color: var(--text-color);
+}
+
+.target-data{
+  border: 4px solid var(--test-hover);
+  width: 90%;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: left;
+}
+
+.icon-data{
+  color: var(--text-color);
+  font-size: 20px;
+
+}
