@@ -1,25 +1,9 @@
-
+import {tiposBebidas} from '../models/const/dataSystem';
+import Producto from '../models/Producto';
+import Field from '../models/System/field'
 
 class ModelsUtils{
-
-  static GenericToModel(datas){
-        const tiposProducto = [
-            { id: 1, descripcion: 'Alimentos y Bebidas' },
-            { id: 2, descripcion: 'Productos de Limpieza' },
-            { id: 3, descripcion: 'Higiene y Cuidado Personal' },
-            { id: 4, descripcion: 'Carnicería y Embutidos' },
-            { id: 5, descripcion: 'Verduras y Frutas' },
-            { id: 6, descripcion: 'Congelados' },
-            { id: 7, descripcion: 'Bebidas Alcohólicas' },
-            { id: 8, descripcion: 'Otros' },
-            { id: 9, descripcion: 'Artículos para Mascotas' },
-            { id: 10, descripcion: 'Productos Naturales y Orgánicos' },
-            { id: 11, descripcion: 'Utensilios de Cocina' },
-            { id: 12, descripcion: 'Medicamentos' },
-            { id: 13, descripcion: 'Productos para Bebés' },
-            { id: 14, descripcion: 'Electrónicos y Accesorios' }
-          ];
-
+  GenericToModel(datas){
         return datas.map((data) => {
             const transformedData = {};
             data.forEach((field) => {
@@ -28,7 +12,12 @@ class ModelsUtils{
                   if(field.name=='IdTipoProducto')
                   {
                     transformedData[field.name] = parseInt(field.value);
-                    transformedData['TipoProducto']=tiposProducto.filter(f=>f.id==parseInt(field.value)).shift().descripcion;
+                    let values=tiposBebidas.filter(f=>f.id==parseInt(field.value));
+                    if(values.length>0){
+                      transformedData['TipoProducto']=values[0].descripcion;
+                    }else{
+                      transformedData['TipoProducto']='';
+                    }
                   }
                   else
                   {
@@ -51,6 +40,30 @@ class ModelsUtils{
             return transformedData;
             });
     }
+
+  ModelToGeneric(modelos){
+      let datas=[];
+      console.log("Inicio de componente")
+      modelos.forEach(obj=>{
+        let fields=[];
+        for (const key in obj) {
+          console.log(key,":",obj[key])
+          fields.push(new Field(key,obj[key].toString()));
+        }
+        console.log('Campos:',fields);
+        datas.push(fields);
+      });
+      console.log("Datas:",datas);
+      return datas;
+  }
+
+  static fromObject(objOrigen,objDestino) {
+    for (const key in objDestino) {
+      objDestino[key]=objOrigen[key];
+    }
+    return objDestino;
+  }
+
 }
 
 

@@ -19,17 +19,20 @@ import ProveedoresPage from './pages/ProveedoresPage/ProveedoresPage';
 import QuejasPage from './pages/QuejasPage/QuejasPage';
 import SalidasPage from './pages/SalidasPage/SalidasPage';
 import VentasPage from './pages/VentasPage/VentasPage';
+import { BlockUI } from "primereact/blockui";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
+  const [blockedScreen, setBblockedScreen] = useState(false);
+
   return (
     <>
       <Router>
         <Routes>
           <Route path="/" element={<LoginPage/>} />
           <Route path="/login" element={<LoginPage/>} />
-          <Route path="/main" element={<MainPage><DataMainPage/></MainPage>} />
+          <Route path="/main" element={<MainPage blockedScreen={blockedScreen} setBblockedScreen={setBblockedScreen} ><DataMainPage/></MainPage>} />
           <Route path="/cancelacion-compras" element={<MainPage><CancelacionComprasPage/></MainPage>} />
           <Route path="/cancelacion-ventas" element={<MainPage><CancelacionVentaPage/></MainPage>} />
           <Route path="/clientes" element={<MainPage><ClientesPage/></MainPage>} />
@@ -38,7 +41,7 @@ function App() {
           <Route path="/empleados" element={<MainPage><EmpleadosPage/></MainPage>} />
           <Route path="/entradas" element={<MainPage><EntradasPage/></MainPage>} />
           <Route path="/inventarios" element={<MainPage><InventariosPage/></MainPage>} />
-          <Route path="/productos" element={<MainPage><ProductoPage/></MainPage>} />
+          <Route path="/productos" element={<MainPage blockedScreen={blockedScreen} setBblockedScreen={setBblockedScreen}><ProductoPage blockedScreen={blockedScreen} setBblockedScreen={setBblockedScreen}/></MainPage>} />
           <Route path="/proveedores" element={<MainPage><ProveedoresPage/></MainPage>} />
           <Route path="/quejas-comentarios" element={<MainPage><QuejasPage/></MainPage>} />
           <Route path="/salidas" element={<MainPage><SalidasPage/></MainPage>} />

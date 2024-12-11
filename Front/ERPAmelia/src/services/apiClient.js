@@ -4,7 +4,7 @@ export const baseURL = 'http://localhost:9091/api/';
 
 export const apiClient = axios.create({
   baseURL: baseURL,
-  timeout: 10000, // Tiempo de espera en milisegundos
+  timeout: 30000, // Tiempo de espera en milisegundos
   headers: {
     'Content-Type': 'application/json',
   },

@@ -1,12 +1,13 @@
 //React
 import { useState, useEffect, useRef } from "react";
-
+import { InputText } from "primereact/inputtext";
 //Prime
 import { Button } from "primereact/button";
 import { Column } from "primereact/column";
 import { DataTable } from "primereact/datatable";
 import { Tooltip } from "primereact/tooltip";
-
+import { IconField } from "primereact/iconfield";
+import { InputIcon } from "primereact/inputicon";
 import "./TableData.css";
 import {
   messageGeneral,
@@ -73,12 +74,36 @@ function TableData({
     );
   };
 
+  const [globalFilterValue, setGlobalFilterValue] = useState("");
+  const [filters, setFilters] = useState({
+    global: { value: null, matchMode: "contains" }, // Inicialización correcta de filtros
+  });
+
+  const onGlobalFilterChange = (e) => {
+    const value = e.target.value;
+    let updatedFilters = { ...filters }; // Clonar filtros existentes
+    updatedFilters["global"].value = value; // Actualizar el valor global
+    setFilters(updatedFilters); // Guardar los filtros actualizados
+    setGlobalFilterValue(value); // Actualizar el estado del filtro global
+  };
+
   return (
     <div className="grid">
-      <div className="col-12 flex justify-content-end">
+      <div className="col-4">
         <div>
-          
+          <IconField iconPosition="left">
+            <InputIcon className="pi pi-search" />
+            <InputText
+              value={globalFilterValue}
+              onChange={onGlobalFilterChange}
+              placeholder="Busqueda"
+            />
+          </IconField>
         </div>
+      </div>
+      <div className="col-4"></div>
+      <div className="col-4 flex justify-content-end">
+        <div></div>
         <Button
           severity="success"
           label={msgNew}
@@ -88,6 +113,7 @@ function TableData({
           onClick={() => openNewDialog()}
         />
       </div>
+
       <div className="col-12">
         <DataTable
           value={arrayObjects}
@@ -96,6 +122,8 @@ function TableData({
           rowsPerPageOptions={[5, 10, 25, 50]}
           tableStyle={{ minWidth: "50rem" }}
           emptyMessage={messageTableData.msgEmptyMessage}
+          globalFilter={globalFilterValue}
+          globalFilterFields={columns.map((col) => col.field)}
         >
           {columns.map((col, index) => (
             <Column
