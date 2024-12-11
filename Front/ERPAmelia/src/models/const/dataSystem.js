@@ -24,3 +24,25 @@ export const tiposProducto = [
     { id: 6, descripcion: 'Vodkas' },
     { id: 7, descripcion: 'Mezcales' }
   ];
+
+  export const areas = [
+    { id: 1, descripcion: 'Sistemas' },
+    { id: 2, descripcion: 'Ventas' },
+    { id: 3, descripcion: 'Administrativo' },
+    { id: 4, descripcion: 'Recursos Humanos' },
+    { id: 5, descripcion: 'Compras' }
+  ];
+
+  export const prioridades = [
+    { id: 1, descripcion: 'Alta' },
+    { id: 2, descripcion: 'Media' },
+    { id: 3, descripcion: 'Baja' }
+  ];
+
+  export const estatus = [
+    { id: 1, descripcion: 'Reportado' },
+    { id: 2, descripcion: 'En Proceso' },
+    { id: 3, descripcion: 'Resuelto' }
+  ];
+
+  

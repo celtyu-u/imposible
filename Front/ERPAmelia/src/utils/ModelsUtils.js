@@ -1,9 +1,12 @@
+import {estatus} from '../models/const/dataSystem';
+import {prioridades} from '../models/const/dataSystem';
+import {areas} from '../models/const/dataSystem';
 import {tiposBebidas} from '../models/const/dataSystem';
 import Producto from '../models/Producto';
 import Field from '../models/System/field'
 
 class ModelsUtils{
-  GenericToModel(datas){
+  GenericToModel(datas,table,clientes=[]){
         return datas.map((data) => {
             const transformedData = {};
             data.forEach((field) => {
@@ -17,6 +20,42 @@ class ModelsUtils{
                       transformedData['TipoProducto']=values[0].descripcion;
                     }else{
                       transformedData['TipoProducto']='';
+                    }
+                  }
+                  else if(field.name=='IdArea'){
+                    transformedData[field.name] = parseInt(field.value);
+                    let values=areas.filter(f=>f.id==parseInt(field.value));
+                    if(values.length>0){
+                      transformedData['Area']=values[0].descripcion;
+                    }else{
+                      transformedData['Area']='';
+                    }
+                  }
+                  else if(field.name=='IdPrioridad'){
+                    transformedData[field.name] = parseInt(field.value);
+                    let values=prioridades.filter(f=>f.id==parseInt(field.value));
+                    if(values.length>0){
+                      transformedData['Prioridad']=values[0].descripcion;
+                    }else{
+                      transformedData['Prioridad']='';
+                    }
+                  }
+                  else if(field.name=='IdEstatus'){
+                    transformedData[field.name] = parseInt(field.value);
+                    let values=estatus.filter(f=>f.id==parseInt(field.value));
+                    if(values.length>0){
+                      transformedData['Estatus']=values[0].descripcion;
+                    }else{
+                      transformedData['Estatus']='';
+                    }
+                  }
+                  else if(field.name=='IdCliente'&&table!="Cliente"){
+                    transformedData[field.name] = parseInt(field.value);
+                    let values=clientes.filter(f=>f.id==parseInt(field.value));
+                    if(values.length>0){
+                      transformedData['Cliente']=values[0].descripcion;
+                    }else{
+                      transformedData['Cliente']='';
                     }
                   }
                   else
