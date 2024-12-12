@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import com.example.demo.models.DataGeneric;
 import com.example.demo.models.Field;
 import com.example.demo.service.DatabaseService;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/database")
 public class DatabaseController {
@@ -41,18 +43,18 @@ public class DatabaseController {
     @PostMapping("/insert")
     public DataGeneric insert(@RequestParam String table, @RequestBody List<List<Field>> datas) {
         // Implement logic for insert
-        return new DataGeneric();
+        return this.service.insert(table, datas);
     }
 
     @PutMapping("/update")
     public DataGeneric update(@RequestParam String table, @RequestBody List<List<Field>> datas) {
         // Implement logic for update
-        return new DataGeneric();
+        return this.service.update(table, datas);
     }
 
     @DeleteMapping("/delete")
     public DataGeneric delete(@RequestParam String table, @RequestParam String id) {
         // Implement logic for delete
-        return new DataGeneric();
+        return this.service.delete(table, id);
     }
 }

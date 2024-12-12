@@ -3,6 +3,7 @@ package com.example.demo.service;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -75,9 +76,13 @@ public class DatabaseService {
         dataGeneric.setTable(table);
 
         try {
-            List<Map<String, Object>> rows = convertFieldsToRows(datas);
+            List<Map<String, Object>> rows = convertFieldsToRows(datas,table);
+            
+            for (Map<String, Object> row : rows) {
+                row.remove("Id"+table);
+            }
+            
             repository.insertRows(table, rows);
-
             dataGeneric.setStatus(1);
             dataGeneric.setMessage("Insert successful");
         } catch (Exception e) {
@@ -93,10 +98,13 @@ public class DatabaseService {
         dataGeneric.setTable(table);
 
         try {
-            Map<String, String> primaryKeyInfo = repository.getPrimaryKeyInfo(table);
-            String primaryKey = primaryKeyInfo.get("name");
+            //Map<String, String> primaryKeyInfo = repository.getPrimaryKeyInfo(table);
+            
+            List<FieldDB> fields= this.getDataLocal(table);
+            Optional<FieldDB> pkField =fields.stream().filter(f->f.getIsPk()==1).findFirst();
+            String primaryKey= pkField.get().getName();
 
-            List<Map<String, Object>> rows = convertFieldsToRows(datas);
+            List<Map<String, Object>> rows = convertFieldsToRows(datas,table);
             repository.updateRows(table, rows, primaryKey);
 
             dataGeneric.setStatus(1);
@@ -114,9 +122,10 @@ public class DatabaseService {
         dataGeneric.setTable(table);
 
         try {
-            Map<String, String> primaryKeyInfo = repository.getPrimaryKeyInfo(table);
-            String primaryKeyName = primaryKeyInfo.get("name");
-            String primaryKeyType = primaryKeyInfo.get("type");
+            List<FieldDB> fields= this.getDataLocal(table);
+            Optional<FieldDB> pkField =fields.stream().filter(f->f.getIsPk()==1).findFirst();
+            String primaryKeyName= pkField.get().getName();
+            String primaryKeyType = "int";
 
             Object convertedId = convertIdToType(id, primaryKeyType);
             repository.deleteRow(table, primaryKeyName, convertedId);
@@ -138,9 +147,20 @@ public class DatabaseService {
     
     
     private List<FieldDB> getDataLocal(String tableName){
-    	return TablesFields.stream()
+        
+    	List<FieldDB> fieldsDB=TablesFields.stream()
     	        .filter(field -> field.getNameTable().equalsIgnoreCase(tableName))
     	        .collect(Collectors.toList());
+        
+        if(fieldsDB.size()==0) {
+        	try {
+				fieldsDB= repository.getTableFields(tableName);
+				TablesFields.addAll(fieldsDB);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+        }
+    	return fieldsDB;
     }
     
     
@@ -215,13 +235,50 @@ public class DatabaseService {
         return datas;
     }
 
-    private List<Map<String, Object>> convertFieldsToRows(List<List<Field>> datas) {
+    private List<Map<String, Object>> convertFieldsToRows(List<List<Field>> datas,String tableName) {
         List<Map<String, Object>> rows = new ArrayList<>();
-
+        List<FieldDB> fieldsDB=this.getDataLocal(tableName);
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
+        
         for (List<Field> fields : datas) {
             Map<String, Object> row = new HashMap<>();
             for (Field field : fields) {
-                row.put(field.getName(), field.getValue());
+            	String nameField=field.getName();
+            	
+                Optional<FieldDB> result = fieldsDB.stream()
+                        .filter(f -> f.getName().equals(nameField))
+                        .findFirst();
+                
+                if(result.isPresent())
+                {
+                	FieldDB f2= result.get();
+                	switch (f2.getType()) {
+					case "nvarchar":
+                        row.put(field.getName(), field.getValue());
+					break;
+					case "int":
+                        row.put(field.getName(),Integer.parseInt(field.getValue()));								
+					break;
+					case "numeric":
+                        row.put(field.getName(),Double.parseDouble(field.getValue()));								
+					break;
+					case "datetime":
+                        try {
+							row.put(field.getName(),formatter.parse(field.getValue()));
+						} catch (ParseException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}								
+					break;
+					default:
+                        row.put(field.getName(), field.getValue());
+					}
+                }
+                else {
+                    row.put(field.getName(), field.getValue());
+                }
+                
+                
             }
             rows.add(row);
         }
