@@ -60,7 +60,7 @@ const LoginPage = () => {
                         </div>
                     </div>
 
-                    <Button label="Iniciar Sesión" type="submit" onClick={onSubmit} className="button-primary" />
+                    <Button label="Iniciar Sesión" type="submit" onClick={onSubmit} className="button-primary2" />
                 </form>
             </Card>
         </div>

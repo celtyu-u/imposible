@@ -224,9 +224,9 @@ const DataMainPage = () => {
                 <div className="col-4 boton-icono"></div>
                 <div className="col-4">
                   <div>
-                    <img src={iconoQuejas} alt="" className="icono-imagen"   onClick={()=>{ navigate("/quejas-comentarios");}}   />
+                    <img src={iconoQuejas} alt="" className="icono-imagen"   onClick={()=>{ navigate("/oportunidades");}}   />
                   </div>
-                  <div className="title-icon">Quejas y comentarios</div>
+                  <div className="title-icon">Oportunidades de Negocio</div>
                 </div>
                 <div className="col-4"></div>
               </div>

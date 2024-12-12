@@ -48,14 +48,14 @@
 
 .p-inputtext {
     width: 100%;
-    border: 1px solid #ced4da; /* Borde gris claro */
+    /*border: 1px solid #ced4da; /* Borde gris claro */
     padding: 10px;
     margin-bottom: 10px; /* Espacio entre campos */
     border-radius: 4px; /* Bordes redondeados */
 }
 
 
-.button-primary {
+.button-primary2 {
     width: 100%;
     background-color: #007bff; /* Color del botón - Azul */
     color: white;
@@ -65,7 +65,7 @@
     cursor: pointer;
 }
 
-.button-primary:hover{
+.button-primary2:hover{
     background-color: #0069d9; /* Color del botón al Hover - Azul oscuro */
 }
 

@@ -6,8 +6,9 @@ import { MegaMenu } from "primereact/megamenu";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "./MainPage.css";
+import { BlockUI } from "primereact/blockui";
 
-const MainPage = ({ children }) => {
+const MainPage = ({ children,blockedScreen, setBblockedScreen }) => {
   const navigate = useNavigate();
   const items = [
     {
@@ -150,9 +151,9 @@ const MainPage = ({ children }) => {
             label: "Módulos",
             items: [
               {
-                label: "Quejas y comentarios",
+                label: "Oportunidades de negocios",
                 command: () => {
-                  navigate("/quejas-comentarios");
+                  navigate("/oportunidades");
                 },
               },
             ],
@@ -168,28 +169,36 @@ const MainPage = ({ children }) => {
 
   return (
     <>
-      <div className="grid">
-        <div className="col-2">
-          <p className="title-main">ERP DAYSI</p>
-        </div>
-        <div className="col-8">
-          <div className="card">
-            <MegaMenu model={items} breakpoint="560px" />
+      <BlockUI
+        blocked={blockedScreen}
+        fullScreen
+        template={
+          <i className="pi pi-spin pi-spinner" style={{ fontSize: "4rem" }}></i>
+        }
+      >
+        <div className="grid">
+          <div className="col-2">
+            <p className="title-main">ERP DAYSI</p>
+          </div>
+          <div className="col-8">
+            <div className="card">
+              <MegaMenu model={items} breakpoint="560px" />
+            </div>
+          </div>
+          <div className="col-2">
+            <Button
+              icon="pi pi-sign-out"
+              onClick={goLogin}
+              tooltip="Cerrar Sesión"
+              rounded
+              text
+              aria-label="Filter"
+            />
           </div>
         </div>
-        <div className="col-2">
-          <Button
-            icon="pi pi-sign-out"
-            onClick={goLogin}
-            tooltip="Cerrar Sesión"
-            rounded
-            text
-            aria-label="Filter"
-          />
-        </div>
-      </div>
-      <hr className="hr-blue" />
-      <div>{children}</div>
+        <hr className="hr-blue" />
+        <div>{children}</div>
+      </BlockUI>
     </>
   );
 };

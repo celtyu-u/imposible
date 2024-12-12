@@ -1,5 +1,5 @@
 /*
-  IdTipoProducto
+  IdTipoFamilia
   1. Alimentos y Bebidas
   2. Productos de Limpieza
   3. Higiene y Cuidado Personal
@@ -15,112 +15,89 @@
  13. Productos para Bebés
  14. Electrónicos y Accesorios
 */
-INSERT INTO [dbo].[Producto] (CodigoBarras, Descripcion, Precio, InventarioInicial, IdTipoProducto)
+
+INSERT INTO [dbo].[Producto] (CodigoBarras, Descripcion, Precio, InventarioBase, IdTipoFamilia, Costo)
 VALUES 
-('7501027380016', 'Arroz Blanco 1kg', 25.50, 150, 1),
-('7501065702921', 'Aceite de Cocina 1L', 40.00, 100, 1),
-('7501013100912', 'Frijoles Negros 900g', 28.90, 80, 1),
-('7501031410084', 'Detergente en Polvo 1kg', 55.00, 50, 2),
-('7501026031842', 'Papel Higiénico 4 rollos', 35.00, 120, 3),
-('7501059291128', 'Jamón de Pavo 500g', 85.00, 60, 4),
-('7501013105016', 'Manzanas Rojas 1kg', 40.50, 200, 5),
-('7501040008102', 'Pizza Congelada Familiar', 95.00, 30, 6),
-('7501094001107', 'Croquetas para Perro 10kg', 450.00, 20, 9),
-('7501023520815', 'Cereal Integral 500g', 75.00, 70, 10)
+('7891234567890', 'Harina de trigo, marca La Estrella', 25.50, 500, 1, 20.00),
+('4567891234567', 'Detergente líquido, aroma cítrico', 42.99, 200, 2, 35.00),
+('1234567890123', 'Jabón de baño, marca "Natura"', 18.75, 350, 3, 15.00),
+('9876543210987', 'Filete de res, corte Ribeye', 220.00, 100, 4, 180.00),
+('3456789012345', 'Manzana roja, variedad Fuji', 15.00, 250, 5, 10.00),
+('2345678901234', 'Pizza congelada, sabor pepperoni', 89.99, 150, 6, 75.00),
+('5678901234567', 'Cerveza clara, marca "Corona"', 22.50, 300, 7, 18.00),
+('8765432109876', 'Alimento para perro, raza pequeña', 120.00, 100, 9, 90.00),
+('1012131415161', 'Leche de almendras, sin azúcar', 35.99, 180, 10, 30.00),
+('7654321098765', 'Olla de acero inoxidable, 5 litros', 499.00, 50, 11, 400.00)
+
+INSERT INTO [dbo].[Producto] (CodigoBarras, Descripcion, Precio, InventarioBase, IdTipoFamilia, Costo)
+VALUES
+('6543210987654', 'Café soluble, marca Nescafé', 85.99, 400, 1, 70.00),
+('2109876543210', 'Atún en lata, al natural', 22.50, 300, 1, 18.00),
+('9876543210987', 'Galletas saladas, marca SensaChips', 32.99, 500, 1, 25.00),
+('1234567890123', 'Jabón en polvo, marca Ariel', 55.00, 250, 2, 45.00),
+('4567891234567', 'Shampoo para cabello seco', 110.00, 150, 3, 90.00),
+('7890123456789', 'Carne molida de res', 180.00, 200, 4, 150.00),
+('3456789012345', 'Tomate rojo, variedad bola', 12.00, 350, 5, 8.00),
+('5678901234567', 'Helado de chocolate, 1 litro', 59.99, 200, 6, 45.00),
+('8765432109876', 'Vino tinto, variedad Cabernet Sauvignon', 150.00, 100, 7, 120.00),
+('0123456789012', 'Semillas de girasol', 30.00, 250, 10, 25.00)
 
 
-INSERT INTO [dbo].[Producto] (CodigoBarras, Descripcion, Precio, InventarioInicial, IdTipoProducto)
-VALUES 
-('7501027380023', 'Atún en Agua 140g', 18.50, 200, 1),
-('7501013101236', 'Sopa Instantánea 64g', 12.00, 300, 1),
-('7501026061248', 'Cloro 1L', 22.50, 150, 2),
-('7501015601475', 'Crema Corporal Hidratante 400ml', 65.00, 80, 3),
-('7501087062012', 'Chorizo de Cerdo 500g', 90.00, 50, 4),
-('7501092810013', 'Tomates Verdes 1kg', 28.00, 250, 5),
-('7501027032045', 'Helado de Vainilla 1L', 85.00, 60, 6),
-('7501051921081', 'Whisky 750ml', 450.00, 25, 7),
-('7501084312307', 'Arena para Gato 10kg', 120.00, 40, 9),
-('7501029831097', 'Miel Orgánica 500g', 125.00, 70, 10)
-
-INSERT INTO [dbo].[Producto] (CodigoBarras, Descripcion, Precio, InventarioInicial, IdTipoProducto)
-VALUES 
-('7501098701125', 'Leche Entera 1L', 22.00, 300, 1),
-('7501028367024', 'Galletas de Chocolate 200g', 35.00, 120, 1),
-('7501093100578', 'Suavizante de Telas 900ml', 45.00, 100, 2),
-('7501012234523', 'Shampoo Anticaspa 750ml', 80.00, 50, 3),
-('7501082311049', 'Carne Molida de Res 1kg', 120.00, 40, 4),
-('7501023412083', 'Aguacate Hass 1kg', 85.00, 150, 5),
-('7501064521078', 'Nuggets de Pollo 500g', 110.00, 70, 6),
-('7501073412035', 'Cerveza Artesanal 355ml', 50.00, 80, 7),
-('7501032100123', 'Hueso de Carnaza para Perro', 35.00, 60, 9),
-('7501056432094', 'Chía Orgánica 250g', 65.00, 90, 10)
-
-INSERT INTO [dbo].[Producto] (CodigoBarras, Descripcion, Precio, InventarioInicial, IdTipoProducto)
-VALUES 
-('7501090042157', 'Café Molido 250g', 95.00, 80, 1),
-('7501029876543', 'Pan de Caja Integral 680g', 48.00, 150, 1),
-('7501012315478', 'Desinfectante en Aerosol 400ml', 75.00, 60, 2),
-('7501023458763', 'Jabón Líquido para Manos 500ml', 38.00, 100, 3),
-('7501098765432', 'Salchichas de Pavo 1kg', 110.00, 70, 4),
-('7501057890321', 'Plátanos Machos 1kg', 30.00, 200, 5),
-('7501065423897', 'Papitas Congeladas 1kg', 90.00, 50, 6),
-('7501019283746', 'Vodka Importado 1L', 300.00, 30, 7),
-('7501032890127', 'Juguete para Gato', 80.00, 40, 9),
-('7501065329018', 'Coco Rallado Orgánico 200g', 70.00, 50, 10)
-
-INSERT INTO [dbo].[Producto] (CodigoBarras, Descripcion, Precio, InventarioInicial, IdTipoProducto)
-VALUES 
-('7501090112234', 'Tortillas de Maíz 1kg', 18.00, 300, 1),
-('7501011123456', 'Sardinas en Salsa de Tomate 125g', 22.50, 200, 1),
-('7501029384756', 'Azúcar Refinada 2kg', 45.00, 150, 1),
-('7501098767891', 'Jabón en Barra para Ropa 400g', 18.00, 100, 2),
-('7501024587612', 'Limpiador Multiusos 1L', 30.00, 120, 2),
-('7501097821345', 'Cepillo Dental Adulto', 25.00, 80, 3),
-('7501018324756', 'Desodorante en Barra 50g', 35.00, 60, 3),
-('7501029384721', 'Pechuga de Pollo 1kg', 120.00, 50, 4),
-('7501012378456', 'Costilla de Cerdo 1kg', 150.00, 40, 4),
-('7501039456123', 'Zanahorias 1kg', 18.00, 250, 5),
-('7501087645123', 'Papaya Maradol 1kg', 25.00, 200, 5),
-('7501034123478', 'Yogurt Congelado 1L', 85.00, 40, 6),
-('7501056732198', 'Pollo Empanizado Congelado 500g', 95.00, 60, 6),
-('7501079123456', 'Tequila Blanco 750ml', 250.00, 35, 7),
-('7501012432189', 'Ron Añejo 1L', 280.00, 30, 7),
-('7501023948567', 'Arena Sanitaria para Gato 5kg', 85.00, 50, 9),
-('7501039487123', 'Premio para Perro 500g', 70.00, 40, 9),
-('7501056723897', 'Granola Natural 500g', 65.00, 90, 10),
-('7501032198475', 'Harina Integral 1kg', 45.00, 80, 10),
-('7501072839471', 'Semillas de Girasol 300g', 55.00, 70, 10)
-
-INSERT INTO [dbo].[Producto] (CodigoBarras, Descripcion, Precio, InventarioInicial, IdTipoProducto)
-VALUES 
-('7501098765433', 'Sopa de Fideo 200g', 15.00, 250, 1),
-('7501023478912', 'Galletas Marías 500g', 25.00, 300, 1),
-('7501012948625', 'Margarina 1kg', 40.00, 200, 1),
-('7501098767892', 'Limpiador para Baños 500ml', 30.00, 100, 2),
-('7501023948570', 'Desinfectante Líquido 500ml', 35.00, 120, 2),
-('7501034123456', 'Shampoo para Cabello Graso 400ml', 65.00, 90, 3),
-('7501012837459', 'Crema Hidratante Facial 200ml', 45.00, 80, 3),
-('7501057654321', 'Filete de Res 1kg', 180.00, 50, 4),
-('7501029384731', 'Pechuga de Pavo 500g', 90.00, 60, 4),
-('7501098765439', 'Manzanas Verdes 1kg', 35.00, 200, 5),
-('7501032109845', 'Naranjas 1kg', 28.00, 150, 5),
-('7501029384752', 'Helado de Fresa 1L', 80.00, 40, 6),
-('7501049283745', 'Pizza Congelada 4 Quesos', 100.00, 60, 6),
-('7501032092837', 'Vino Tinto 750ml', 150.00, 45, 7),
-('7501065321894', 'Whisky Escocés 700ml', 350.00, 30, 7),
-('7501012837460', 'Pellets para Gato 5kg', 90.00, 80, 9),
-('7501076543210', 'Correa para Perro', 45.00, 60, 9),
-('7501087321098', 'Cereal de Maíz 500g', 55.00, 100, 10),
-('7501029384735', 'Aceite de Coco 500ml', 65.00, 70, 10),
-('7501032093841', 'Chía 250g', 40.00, 50, 10);
+INSERT INTO [dbo].[Producto] (CodigoBarras, Descripcion, Precio, InventarioBase, IdTipoFamilia, Costo)
+VALUES
+('1112223334444', 'Pasta spaghetti, marca La Moderna', 18.99, 600, 1, 15.00),
+('5556667778888', 'Arroz blanco, grano largo', 25.50, 800, 1, 20.00),
+('9998887776666', 'Frijoles negros en lata', 16.50, 500, 1, 13.00),
+('3332221110000', 'Limpiador multiusos', 39.99, 300, 2, 32.00),
+('7778889990000', 'Suavizante de telas, aroma floral', 45.99, 250, 2, 38.00),
+('2221110003333', 'Papel higiénico, 4 rollos', 28.50, 400, 3, 23.00),
+('6667778889999', 'Chuleta de cerdo', 140.00, 150, 4, 110.00),
+('0001112223333', 'Zanahoria, paquete', 10.50, 500, 5, 8.00),
+('4445556667777', 'Helado de vainilla, 1 litro', 55.99, 200, 6, 42.00),
+('8889990001111', 'Cerveza oscura, marca Indio', 24.50, 300, 7, 19.00)
 
 
+INSERT INTO [dbo].[Producto] (CodigoBarras, Descripcion, Precio, InventarioBase, IdTipoFamilia, Costo)
+VALUES
+('0001112223333', 'Leche entera, marca Lala', 18.50, 800, 1, 15.00),
+('3332221110000', 'Yogurt griego, sabor natural', 22.99, 400, 1, 18.00),
+('5556667778888', 'Pan blanco, de molde', 15.99, 600, 1, 12.00),
+('7778889990000', 'Detergente en polvo, marca Ariel', 49.99, 350, 2, 40.00),
+('9998887776666', 'Suavizante concentrado, aroma lavanda', 38.50, 200, 2, 30.00),
+('1112223334444', 'Jabón líquido para manos, antibacterial', 25.99, 500, 3, 20.00),
+('2221110003333', 'Pañales desechables, talla M', 180.00, 250, 13, 150.00),
+('6667778889999', 'Pollo entero, fresco', 90.00, 100, 4, 75.00),
+('8889990001111', 'Manzana verde, Granny Smith', 12.50, 400, 5, 10.00),
+('4445556667777', 'Pizza congelada, cuatro quesos', 79.99, 150, 6, 65.00)
+
+
+INSERT INTO [dbo].[Producto] (CodigoBarras, Descripcion, Precio, InventarioBase, IdTipoFamilia, Costo)
+VALUES
+('1234567890123', 'Avena instantánea, sabor a manzana', 29.99, 500, 1, 25.00),
+('4567891234567', 'Jugo de naranja, 1 litro', 19.50, 800, 1, 16.00),
+('7890123456789', 'Galletas integrales, sin azúcar', 35.99, 300, 1, 30.00),
+('0123456789012', 'Detergente para platos, limón', 28.50, 400, 2, 23.00),
+('3456789012345', 'Suavizante concentrado, aroma bebé', 42.99, 250, 2, 35.00),
+('6789012345678', 'Papel toalla, tamaño jumbo', 39.99, 300, 3, 32.00),
+('9012345678901', 'Salchichas de pavo', 95.00, 150, 4, 80.00),
+('2345678901234', 'Lechuga romana, pieza', 18.00, 200, 5, 15.00),
+('5678901234567', 'Helado de coco, 1 litro', 62.99, 100, 6, 50.00),
+('8901234567890', 'Cerveza artesanal, IPA', 35.00, 150, 7, 28.00)
 
 
 
  
 /*
-creame 10 datos dummy para la siguiente tabla, el precio debe ser en pesos mexicanos, los productos deben ser de abarrotes, la definición es: CREATE TABLE [dbo].[Producto]( [IdProducto] [int] IDENTITY(1, 1) NOT NULL, [CodigoBarras] [nvarchar](13) NOT NULL, [Descripcion] [nvarchar](200) NOT NULL, [Precio] [numeric](18, 2) NOT NULL, [InventarioInicial] [numeric](18, 0) NOT NULL, [IdTipoProducto] [int] NOT NULL, CONSTRAINT [PK_Producto] PRIMARY KEY CLUSTERED ) debes considerar el siguiente catálogo para los idTipoProducto :   IdTipoProducto
+creame 10 datos dummy para la siguiente tabla, el precio debe ser en pesos mexicanos, los productos deben ser de abarrotes, la definición es: 
+CREATE TABLE [dbo].[Producto](
+	[IdProducto] [int] IDENTITY(1,1) NOT NULL,
+	[CodigoBarras] [nvarchar](13) NULL,
+	[Descripcion] [nvarchar](200) NULL,
+	[Precio] [numeric](18, 2) NULL,
+	[InventarioBase] [numeric](18, 0) NULL,
+	[IdTipoFamilia] [int] NULL,
+	[Costo] [numeric](18, 2) NULL)
+debes considerar el siguiente catálogo para los idTipoFamilia :   idTipoFamilia
   1. Alimentos y Bebidas
   2. Productos de Limpieza
   3. Higiene y Cuidado Personal
