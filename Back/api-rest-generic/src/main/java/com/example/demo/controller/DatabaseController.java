@@ -39,6 +39,17 @@ public class DatabaseController {
         // Implement logic for getById
         return new DataGeneric();
     }
+    @GetMapping("/getByDetalleId")
+    public DataGeneric getByDetalleId(@RequestParam String table, @RequestParam String id) {
+        // Implement logic for getById
+        return this.service.getByDetalleId(table, id);
+    }
+
+    @DeleteMapping("/deleteDetalleId")
+    public DataGeneric deleteDetalleId(@RequestParam String table, @RequestParam String id) {
+        // Implement logic for getById
+        return this.service.deleteDetalleId(table, id);
+    }
 
     @PostMapping("/insert")
     public DataGeneric insert(@RequestParam String table, @RequestBody List<List<Field>> datas) {

@@ -2,8 +2,8 @@ USE [ERPVersionA]
 GO
 
 -- Variables para ayudar en la generacion de datos.
-DECLARE @FechaInicio DATE = '2023-12-01';
-DECLARE @FechaFin DATE = '2023-12-21';
+DECLARE @FechaInicio DATE = '2024-12-01';
+DECLARE @FechaFin DATE = '2024-12-21';
 DECLARE @NumSalidas INT = 13;
 DECLARE @Contador INT = 1;
 DECLARE @TotalProductos INT;

@@ -1,8 +1,8 @@
 USE [ERPVersionA]
 GO
 
-DECLARE @FechaInicio DATETIME = '2023-12-01';
-DECLARE @FechaFin DATETIME = '2023-12-21 23:59:59';
+DECLARE @FechaInicio DATETIME = '2024-12-01';
+DECLARE @FechaFin DATETIME = '2024-12-21 23:59:59';
 DECLARE @Contador INT = 1;
 DECLARE @TotalProductos INT;
 DECLARE @ProductosPorVenta INT;

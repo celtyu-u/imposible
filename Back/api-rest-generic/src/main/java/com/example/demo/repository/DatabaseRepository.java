@@ -51,6 +51,43 @@ public class DatabaseRepository {
         }
     }
 
+    
+    public int deleteDetalleRows(String table, String id) throws SQLException {
+        // Consulta para eliminar el registro basado en el id
+        String sql = "DELETE FROM " + table + " WHERE Id" + table.replace("Detalle", "") + "=" + id;
+
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            // Ejecutar la eliminación
+            int rowsAffected = stmt.executeUpdate(); // Devuelve el número de filas afectadas
+
+            return rowsAffected; // Retorna el número de filas eliminadas
+        }
+    }
+    
+    public List<Map<String, Object>> getAllDetalleRows(String table,String id) throws SQLException {
+        String sql = "SELECT * FROM " + table+" where Id"+table.replace("Detalle", "")+"="+id; // Consulta dinámica
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            List<Map<String, Object>> results = new ArrayList<>();
+            ResultSetMetaData metaData = rs.getMetaData();
+            int columnCount = metaData.getColumnCount();
+
+            while (rs.next()) {
+                Map<String, Object> row = new HashMap<>();
+                for (int i = 1; i <= columnCount; i++) {
+                    row.put(metaData.getColumnName(i), rs.getObject(i));
+                }
+                results.add(row);
+            }
+            return results;
+        }
+    }
+
+
     /**
      * Obtiene información de la clave primaria de una tabla.
      * 
@@ -79,24 +116,34 @@ public class DatabaseRepository {
      * @param rows Lista de filas representadas como mapas columna-valor.
      * @throws SQLException Si ocurre un error durante la inserción.
      */
-    public void insertRows(String table, List<Map<String, Object>> rows) throws SQLException {
+    public int insertRows(String table, List<Map<String, Object>> rows) throws SQLException {
         if (rows.isEmpty()) {
-            return;
+            return -1; // Si no hay filas, se retorna un valor por defecto
         }
 
         // Construir la consulta dinámica para la inserción
         String sql = buildInsertQuery(table, rows.get(0).keySet());
         try (Connection conn = dataSource.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+             PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+
+            int lastGeneratedId = -1;
 
             for (Map<String, Object> row : rows) {
                 int index = 1;
                 for (Object value : row.values()) {
                     stmt.setObject(index++, value);
                 }
-                stmt.addBatch();
+                stmt.executeUpdate(); // Ejecutar fila por fila
+
+                // Obtener el último identificador generado
+                try (ResultSet rs = stmt.getGeneratedKeys()) {
+                    if (rs.next()) {
+                        lastGeneratedId = rs.getInt(1); // Actualizar el último ID generado
+                    }
+                }
             }
-            stmt.executeBatch();
+
+            return lastGeneratedId; // Retornar el último ID generado
         }
     }
 

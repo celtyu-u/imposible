@@ -51,12 +51,6 @@ const MainPage = ({ children, blockedScreen, setBblockedScreen }) => {
             navigate("/compras");
           },
         },
-        {
-          label: "Cancelación Compras",
-          command: () => {
-            navigate("/cancelacion-compras");
-          },
-        },
       ],
     },
     {

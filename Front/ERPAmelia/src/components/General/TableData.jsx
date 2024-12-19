@@ -24,7 +24,9 @@ function TableData({
   isMobile = 0,
   msgNew = "",
   executionManual,
+  acciones=true
 }) {
+  
   const actionBodyTemplate = (rowData) => {
     return (
       <>
@@ -104,7 +106,8 @@ function TableData({
       <div className="col-4"></div>
       <div className="col-4 flex justify-content-end">
         <div></div>
-        <Button
+        {
+          acciones&&<Button
           severity="success"
           label={msgNew}
           icon={messageGeneral.iconNew}
@@ -112,6 +115,8 @@ function TableData({
           className="button-primary"
           onClick={() => openNewDialog()}
         />
+
+        }
       </div>
 
       <div className="col-12">
@@ -143,7 +148,7 @@ function TableData({
 
           <Column
             header={messageTableData.msgHeaderActions}
-            body={actionBodyTemplate}
+            body={acciones?actionBodyTemplate:""}
           ></Column>
         </DataTable>
       </div>
