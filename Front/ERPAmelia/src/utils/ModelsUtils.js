@@ -4,6 +4,7 @@ import {areas} from '../models/const/dataSystem';
 import {tiposBebidas} from '../models/const/dataSystem';
 import Producto from '../models/Producto';
 import Field from '../models/System/field'
+import databaseService from '../services/databaseService';
 
 class ModelsUtils{
   GenericToModel(datas,table,clientes=[]){
@@ -70,7 +71,8 @@ class ModelsUtils{
                   transformedData[field.name] = parseFloat(field.value);
                   break;
                 case "datetime":
-                  transformedData[field.name] = new Date(field.value.substring(0, 4), field.value.substring(4, 6) - 1, field.value.substring(6, 8));
+                  transformedData[field.name+"R"] = new Date(field.value.substring(6, 10), field.value.substring(3, 5) - 1, field.value.substring(0, 2));
+                  transformedData[field.name] = field.value;
                   break;
                 default:
                   transformedData[field.name] = field.value;
@@ -101,6 +103,27 @@ class ModelsUtils{
       objDestino[key]=objOrigen[key];
     }
     return objDestino;
+  }
+
+  async GenericToDropDown(table,idProperty,descriptionProperty,setFunction){
+    let mappedDatas=[];
+    try {
+      const result = await databaseService.getAll(table);
+      if(result.status==1){
+        const genericModels = this.GenericToModel(result.datas,table);
+        mappedDatas=genericModels.map(item=>({
+          id:item[idProperty],
+          descripcion:item[descriptionProperty],
+        }));
+        setFunction(mappedDatas);
+      }else{
+        console.error(result.message);
+      }
+      
+    } catch (error) {
+      console.error(error);
+    }
+    return mappedDatas;
   }
 
 }
