@@ -1,13 +1,13 @@
-USE [ERPVersionA]
+USE [ERPVersionD]
 GO
 
 -- Variables para ayudar en la generacion de datos.
-DECLARE @FechaInicio DATE = '2023-12-01';
-DECLARE @FechaFin DATE = '2023-12-21';
-DECLARE @NumSalidas INT = 13;
+DECLARE @FechaInicio DATE = '2024-12-01';
+DECLARE @FechaFin DATE = '2024-12-21';
+DECLARE @NumCompras INT = 12;
 DECLARE @Contador INT = 1;
 DECLARE @TotalProductos INT;
-DECLARE @ProductosPorSalida INT;
+DECLARE @ProductosPorCompra INT;
 
 -- Tabla temporal para los productos y su precio
 CREATE TABLE #Productos (
@@ -21,7 +21,8 @@ SELECT IdProducto, Precio FROM Producto;
 
 SELECT @TotalProductos = COUNT(*) FROM #Productos;
 
-SET @ProductosPorSalida = 2;
+--SET @ProductosPorCompra =  @TotalProductos / @NumCompras;
+SET @ProductosPorCompra =  8;
 
 -- Tabla temporal para llevar el control de productos ya usados
 CREATE TABLE #ProductosUsados (
@@ -31,36 +32,39 @@ CREATE TABLE #ProductosUsados (
 insert into #ProductosUsados
 select IdProducto,0 from Producto;
 
-CREATE TABLE #ProductosPorSalida (
-    IdSalida INT,
+CREATE TABLE #ProductosPorCompra (
+    IdCompra INT,
 	IdProducto INT
 );
 
--- Bucle para generar las salidas
-WHILE @Contador <= @NumSalidas
+-- Bucle para generar las compras
+WHILE @Contador <= @NumCompras
 BEGIN
     -- Generar una fecha aleatoria dentro del rango
-    DECLARE @FechaSalida DATETIME = DATEADD(day, ABS(CHECKSUM(NEWID()) % 14), @FechaInicio);
+    DECLARE @FechaCompra DATETIME = DATEADD(day, ABS(CHECKSUM(NEWID()) % 14), @FechaInicio);
+
+    -- Generar un IdProveedor aleatorio
+    DECLARE @IdProveedor INT = ABS(CHECKSUM(NEWID()) % 10) + 1;
 
     -- Generar un IdEmpleado aleatorio
     DECLARE @IdEmpleado INT = ABS(CHECKSUM(NEWID()) % 20) + 1;
 
-    -- Insertar el encabezado de la salida
-	DECLARE @IdSalida INT
-    INSERT INTO Salida (Fecha, IdEmpleado, Comentario, Total)
-    VALUES (@FechaSalida, @IdEmpleado, 'Salida generada automaticamente', 0);
-	SET @IdSalida = SCOPE_IDENTITY()
+    -- Insertar el encabezado de la compra
+	DECLARE @IdCompra INT
+    INSERT INTO Compra (Fecha, IdProveedor, IdEmpleado, Comentario, Total)
+    VALUES (@FechaCompra, @IdProveedor, @IdEmpleado, 'Compra generada automaticamente', 0);
+	SET @IdCompra = SCOPE_IDENTITY()
     
-    -- Variables para el detalle de la salida
-    DECLARE @TotalSalida DECIMAL(18, 2) = 0;
+    -- Variables para el detalle de la compra
+    DECLARE @TotalCompra DECIMAL(18, 2) = 0;
 	DECLARE @ProductoAgregado INT = 0;
 	DECLARE @Cantidad INT
 	DECLARE @IdProducto INT
 	DECLARE @PrecioProducto DECIMAL (18,2)
 	DECLARE @ContadorProducto INT = 1;
 
-	-- Agregamos la cantidad de productos por salida
-	WHILE @ContadorProducto <= @ProductosPorSalida
+	-- Agregamos la cantidad de productos por compra
+	WHILE @ContadorProducto <= @ProductosPorCompra
 	BEGIN
 		-- Seleccionamos un producto que no se halla agregado
 		SELECT TOP 1  @IdProducto = IdProducto, @PrecioProducto = Precio 
@@ -76,15 +80,16 @@ BEGIN
 			SET @ProductoAgregado = 1
 		END
 
-		SET @Cantidad =ABS(CHECKSUM(NEWID()) % 5)+1;
+        --Cantidad random.
+		SET @Cantidad =ABS(CHECKSUM(NEWID()) % 80)+20;
 		DECLARE @TotalDetalle DECIMAL(18,2) = @PrecioProducto * @Cantidad;
 
-		-- Insertamos el detalle de la salida
-		INSERT INTO SalidaDetalle (IdSalida, IdProducto, Cantidad, Costo, TotalDet)
-		VALUES (@IdSalida, @IdProducto, @Cantidad, @PrecioProducto, @TotalDetalle);
+		-- Insertamos el detalle de la compra
+		INSERT INTO CompraDetalle (IdCompra, IdProducto, Cantidad, Costo, TotalDet)
+		VALUES (@IdCompra, @IdProducto, @Cantidad, @PrecioProducto, @TotalDetalle);
 
-		-- Actualizamos el total de la salida
-		SET @TotalSalida = @TotalSalida + @TotalDetalle;
+		-- Actualizamos el total de la compra
+		SET @TotalCompra = @TotalCompra + @TotalDetalle;
 
 		-- Insertamos en los productos usados.
 		if exists(select 1 from #ProductosUsados where IdProducto=@IdProducto)
@@ -96,13 +101,13 @@ BEGIN
 			INSERT INTO #ProductosUsados (IdProducto,Usado) VALUES (@IdProducto,1);
 		end
 
-		INSERT INTO #ProductosPorSalida (IdSalida,IdProducto)
-		VALUES (@IdSalida,@IdProducto);
+		INSERT INTO #ProductosPorCompra (IdCompra,IdProducto)
+		VALUES (@IdCompra,@IdProducto);
 		SET @ContadorProducto = @ContadorProducto + 1;
 		SET @ProductoAgregado = 0;
 	END
 	
-    UPDATE Salida SET Total = @TotalSalida WHERE IdSalida = @IdSalida;
+    UPDATE Compra SET Total = @TotalCompra WHERE IdCompra = @IdCompra;
 
     SET @Contador = @Contador + 1;
 END
@@ -113,4 +118,4 @@ select * from #ProductosUsados;
 -- Eliminamos las tablas temporales.
 DROP TABLE #Productos;
 DROP TABLE #ProductosUsados;
-DROP TABLE #ProductosPorSalida;
+DROP TABLE #ProductosPorCompra;

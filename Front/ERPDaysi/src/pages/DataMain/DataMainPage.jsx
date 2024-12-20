@@ -93,10 +93,10 @@ const DataMainPage = () => {
                   <div className="title-icon">Compras de Producto</div>
                 </div>
                 <div className="col-4">
-                  <div>
+                  {/* <div>
                     <img src={iconoBorrar} alt="" className="icono-imagen"  onClick={()=>{ navigate("/cancelacion-compras");}}   />
                   </div>
-                  <div className="title-icon">Cancelación Compras</div>
+                  <div className="title-icon">Cancelación Compras</div> */}
                 </div>
               </div>
             </div>

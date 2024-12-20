@@ -1,4 +1,4 @@
-USE [ERPVersionA]
+USE [ERPVersionD]
 GO
 
 /****** Object:  Table [dbo].[SalidaDetalle]    Script Date: 12/12/2024 5:32:19 PM ******/

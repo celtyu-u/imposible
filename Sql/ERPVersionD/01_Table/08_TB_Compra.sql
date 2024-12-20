@@ -1,4 +1,4 @@
-USE [ERPVersionA]
+USE [ERPVersionD]
 GO
 
 /****** Object:  Table [dbo].[Compra]    Script Date: 12/12/2024 5:28:37 PM ******/

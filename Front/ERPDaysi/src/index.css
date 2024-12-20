@@ -620,13 +620,8 @@ h1:after {
 
 .icono-imagen{
   width: 100px;
-  transition: width 0.3s ease;
+  animation: 1s ease-out forwards;
 }
-
-.icono-imagen:hover{
-  width: 110px;
-}
-
 
 .boton-icono{
   margin: 0px 0px 0px 0px;
@@ -650,4 +645,49 @@ h1:after {
 
 .line-down{
   color: var(--text-color);
+}
+
+
+
+.dashboard-label{
+  text-align: left;
+  border-radius: 10px;
+  padding: 10px 10px 10px 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin: 5px 30px 5px 10px;
+  width: 380px;
+}
+
+.dashboard-label:hover{
+  box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+}
+
+.dash-icon{
+  color: var(--secondary-color);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.dash-title{
+  font-size: 25px;
+  font-weight: 900;
+  color: var(--secondary-color);
+}
+
+.dash-data{
+  font-size: 50px;
+  color: var(--primary-color);
+}
+
+.dash-subtitle{
+  color: gray;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.dash-data2{
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--secondary-color);
+
 }

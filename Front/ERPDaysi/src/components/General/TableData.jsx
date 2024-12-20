@@ -24,6 +24,8 @@ function TableData({
   isMobile = 0,
   msgNew = "",
   executionManual,
+  acciones = true,
+  busqueda = true,
 }) {
   const actionBodyTemplate = (rowData) => {
     return (
@@ -91,27 +93,30 @@ function TableData({
     <div className="grid">
       <div className="col-4">
         <div>
-          <IconField iconPosition="right">
-            <InputIcon className="pi pi-search" />
-            <InputText
-              value={globalFilterValue}
-              onChange={onGlobalFilterChange}
-              placeholder="Busqueda"
-            />
-          </IconField>
+          {
+           busqueda&& <IconField iconPosition="left">
+              <InputText
+                value={globalFilterValue}
+                onChange={onGlobalFilterChange}
+                placeholder="Búsqueda"
+              />
+            </IconField>
+          }
         </div>
       </div>
       <div className="col-4"></div>
       <div className="col-4 flex justify-content-end">
         <div></div>
-        <Button
-          severity="success"
-          label={msgNew}
-          icon={messageGeneral.iconNew}
-          iconPos="right"
-          className="button-primary"
-          onClick={() => openNewDialog()}
-        />
+        {acciones && (
+          <Button
+            severity="success"
+            label={msgNew}
+            icon={messageGeneral.iconNew}
+            iconPos="right"
+            className="button-primary"
+            onClick={() => openNewDialog()}
+          />
+        )}
       </div>
 
       <div className="col-12">
@@ -143,7 +148,7 @@ function TableData({
 
           <Column
             header={messageTableData.msgHeaderActions}
-            body={actionBodyTemplate}
+            body={acciones ? actionBodyTemplate : ""}
           ></Column>
         </DataTable>
       </div>

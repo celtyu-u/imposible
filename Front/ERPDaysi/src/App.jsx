@@ -9,16 +9,16 @@ import './App.css'
 import CancelacionComprasPage from './pages/CancelacionComprasPage/CancelacionComprasPage';
 import CancelacionVentaPage from './pages/CancelacionVentaPage/CancelacionVentaPage';
 import ClientePage from './pages/ClientePage/ClientePage';
-import ComprasPage from './pages/ComprasPage/ComprasPage';
+import CompraPage from './pages/CompraPage/CompraPage';
 import DashboardPage from './pages/DashboardPage/DashboardPage';
 import EmpleadoPage from './pages/EmpleadoPage/EmpleadoPage';
-import EntradasPage from './pages/EntradasPage/EntradasPage';
+import EntradaPage from './pages/EntradaPage/EntradaPage';
 import InventariosPage from './pages/InventariosPage/InventariosPage';
 import ProductoPage from './pages/ProductoPage/ProductoPage';
 import ProveedorPage from './pages/ProveedorPage/ProveedorPage';
 import OportunidadPage from './pages/OportunidadPage/OportunidadPage';
-import SalidasPage from './pages/SalidasPage/SalidasPage';
-import VentasPage from './pages/VentasPage/VentasPage';
+import SalidaPage from './pages/SalidaPage/SalidaPage';
+import VentaPage from './pages/VentaPage/VentaPage';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
@@ -34,16 +34,16 @@ function App() {
           <Route path="/main" element={<MainPage blockedScreen={blockedScreen} setBblockedScreen={setBblockedScreen}><DataMainPage/></MainPage>} />
           <Route path="/cancelacion-compras" element={<MainPage><CancelacionComprasPage  blockedScreen={blockedScreen} setBblockedScreen={setBblockedScreen} /></MainPage>} />
           <Route path="/cancelacion-ventas" element={<MainPage><CancelacionVentaPage  blockedScreen={blockedScreen} setBblockedScreen={setBblockedScreen} /></MainPage>} />
-          <Route path="/compras" element={<MainPage><ComprasPage  blockedScreen={blockedScreen} setBblockedScreen={setBblockedScreen} /></MainPage>} />
+          <Route path="/compras" element={<MainPage><CompraPage  blockedScreen={blockedScreen} setBblockedScreen={setBblockedScreen} /></MainPage>} />
           <Route path="/dashboard" element={<MainPage><DashboardPage  blockedScreen={blockedScreen} setBblockedScreen={setBblockedScreen} /></MainPage>} />
           <Route path="/empleados" element={<MainPage><EmpleadoPage  blockedScreen={blockedScreen} setBblockedScreen={setBblockedScreen} /></MainPage>} />
-          <Route path="/entradas" element={<MainPage><EntradasPage  blockedScreen={blockedScreen} setBblockedScreen={setBblockedScreen} /></MainPage>} />
+          <Route path="/entradas" element={<MainPage><EntradaPage  blockedScreen={blockedScreen} setBblockedScreen={setBblockedScreen} /></MainPage>} />
           <Route path="/inventarios" element={<MainPage><InventariosPage  blockedScreen={blockedScreen} setBblockedScreen={setBblockedScreen} /></MainPage>} />
           <Route path="/productos" element={<MainPage><ProductoPage blockedScreen={blockedScreen} setBblockedScreen={setBblockedScreen} /></MainPage>} />
           <Route path="/proveedores" element={<MainPage><ProveedorPage  blockedScreen={blockedScreen} setBblockedScreen={setBblockedScreen} /></MainPage>} />
           <Route path="/oportunidades" element={<MainPage><OportunidadPage  blockedScreen={blockedScreen} setBblockedScreen={setBblockedScreen} /></MainPage>} />
-          <Route path="/salidas" element={<MainPage><SalidasPage  blockedScreen={blockedScreen} setBblockedScreen={setBblockedScreen} /></MainPage>} />
-          <Route path="/ventas" element={<MainPage><VentasPage  blockedScreen={blockedScreen} setBblockedScreen={setBblockedScreen} /></MainPage>} />
+          <Route path="/salidas" element={<MainPage><SalidaPage  blockedScreen={blockedScreen} setBblockedScreen={setBblockedScreen} /></MainPage>} />
+          <Route path="/ventas" element={<MainPage><VentaPage  blockedScreen={blockedScreen} setBblockedScreen={setBblockedScreen} /></MainPage>} />
           <Route path="/clientes" element={<MainPage><ClientePage blockedScreen={blockedScreen} setBblockedScreen={setBblockedScreen} /></MainPage>} />
         </Routes>
       </Router>
