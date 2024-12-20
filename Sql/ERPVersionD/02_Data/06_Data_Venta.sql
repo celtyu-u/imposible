@@ -50,7 +50,7 @@ BEGIN
 		DECLARE @FechaVenta DATETIME = DATEADD(hour, ABS(CHECKSUM(NEWID()) % 24), @FechaInicio);
 
 		-- Generar un IdCliente aleatorio
-		DECLARE @IdCliente INT = ABS(CHECKSUM(NEWID()) % 30) + 1;
+		DECLARE @IdCliente INT = ABS(CHECKSUM(NEWID()) % 20) + 1;
 
 		-- Generar un IdEmpleado aleatorio
 		DECLARE @IdEmpleado INT = ABS(CHECKSUM(NEWID()) % 20) + 1;
